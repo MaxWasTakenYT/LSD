@@ -3,7 +3,7 @@
 usage() {
     echo -e "LSD" | figlet | lolcat
     echo -e "Note: in order for LSD to work, you need to install lolcat"
-    echo -e "Usage for LSD: \n[--animate | -a > Runs LSD with animations]\n [--help | -h > Outputs usage and exits.]\n"
+    echo -e "Usage for LSD: \n[--animate | -a > Runs LSD with animations]\n [--help | -h > Outputs usage and exits.]\n [--disks | -d > Outputs disk tree. (with lsblk)]\n"
 }
 
 if [[ "$#" -eq 0 ]]; then
@@ -16,6 +16,10 @@ while [[ "$#" -gt 0 ]]; do
             ls -lah | lolcat -a --speed=400
             shift
             ;;
+    --disks|-d)
+        lsblk -T -p | lolcat
+        shift
+        ;;
         --help|-h)
           usage
           shift
